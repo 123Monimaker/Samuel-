@@ -1,19 +1,29 @@
-#include <stdio.h>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
 
 int main() {
-    float celsius, fahrenheit;
+    srand(time(0));
+    int secretNumber = rand() % 100 + 1;
+    int guess = 0;
+    bool gameWon = false;
 
-    printf("Enter temperature in Celsius: ");
-    scanf("%f", &celsius);
+    cout << "Welcome to the Number Guessing Game!" << endl;
+    cout << "I'm thinking of a number between 1 and 100." << endl;
 
-    fahrenheit = (celsius * 1.8) + 32;
+    while (!gameWon) {
+        cout << "Enter your guess: ";
+        cin >> guess;
 
-    printf("%.2f°C is equal to %.2f°F\n", celsius, fahrenheit);
-
-    if (celsius < 0) {
-        printf("Freezing!\n");
-    } else if (celsius > 30) {
-        printf("Hot!\n");
+        if (guess == secretNumber) {
+            cout << "Congratulations! You guessed the secret Number!" << endl;
+            gameWon = true;
+        } else if (guess < secretNumber) {
+            cout << "Too Low! Try again." << endl;
+        } else {
+            cout << "Too High! Try again." << endl;
+        }
     }
 
     return 0;
